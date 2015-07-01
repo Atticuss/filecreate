@@ -23,7 +23,7 @@ class ProgressBar(threading.Thread):
 			sys.stdout.flush()
 
 parser = argparse.ArgumentParser(description='Generate a file.', prog='filecreate.py', usage='%(prog)s -s <size> -o <outfile> [-d <junkdata>]', formatter_class=lambda prog: argparse.HelpFormatter(prog,max_help_position=65, width=150))
-parser.add_argument("-s", "--size", action='store', help="Size of outfile")
+parser.add_argument("-s", "--size", action='store', help="Size of outfile in MB")
 parser.add_argument("-o", "--outfile", action='store', help="File to write data to")
 parser.add_argument("-d", "--junkdata", action='store', help="Junk data to fill file with (default is: // junk data //)")
 args = parser.parse_args()
