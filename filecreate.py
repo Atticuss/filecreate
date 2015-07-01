@@ -1,4 +1,4 @@
-import sys,threading
+import sys,threading,argparse
 
 #use a thread to keep terminal writes from slowing down file write speed
 class ProgressBar(threading.Thread):
@@ -22,9 +22,19 @@ class ProgressBar(threading.Thread):
 			sys.stdout.write(text)
 			sys.stdout.flush()
 
-outfile = 'test2.txt'
-data = b'// nVisium //'
-size = 100 #in mb
+parser = argparse.ArgumentParser(description='Generate a file.', prog='filecreate.py', usage='%(prog)s -s <size> -o <outfile> [-d <junkdata>]', formatter_class=lambda prog: argparse.HelpFormatter(prog,max_help_position=65, width=150))
+parser.add_argument("-s", "--size", action='store', help="Size of outfile")
+parser.add_argument("-o", "--outfile", action='store', help="File to write data to")
+parser.add_argument("-d", "--junkdata", action='store', help="Junk data to fill file with (default is: // junk data //)")
+args = parser.parse_args()
+
+outfile = args.outfile
+size = int(args.size)
+
+if args.junkdata:
+	data = args.junkdata.encode()
+else:
+	data = b"// junk data //\n"
 
 print('[*] Creating %sMB file'%size)
 
