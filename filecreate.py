@@ -39,7 +39,7 @@ else:
 print('[*] Creating %sMB file'%size)
 
 with open(outfile,'wb') as f:
-	size *= 1000*1000
+	size *= 1024*1024
 	written = 0
 	updated = False
 	t = ProgressBar()
