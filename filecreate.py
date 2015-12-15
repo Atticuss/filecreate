@@ -29,7 +29,7 @@ parser.add_argument("-d", "--junkdata", action='store', help="Junk data to fill 
 args = parser.parse_args()
 
 outfile = args.outfile
-size = int(args.size)
+size = float(args.size)
 
 if args.junkdata:
 	data = args.junkdata.encode()
